@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta id="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/tmp.css">
+  <script src="/js/บันทึกข้อมูลคู่ค้า.js"></script>
+  
+  <title>บันทึกข้อมูลคู่ค้า</title>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <img src="/assets/logo.png" class="logo" alt="">
+    </div>
+  </header>
+  <ul>
+    <li><a href="/home">หน้าหลัก</a></li>
+    <li><a href="./บันทึกลูกค้า.html">การซื้อรถ</a></li>
+    <li><a href="./บันทึกลูกค้า1.html">การขายรถ</a></li>
+    <li><a href="/home/partner" class="active">บันทึกคู่ค้าขายรถ</a></li>
+    <li><a href="./บันทึกลูกค้า2.html">การซ่อมรถ</a></li>
+    <li><a href="./การสต๊อก.html">การสต๊อกรถ</a></li>
+    <li><a href="./บันทึกลูกค้า3.html">การเดินทะเบียน</a></li>
+    <li><a href="./login.html">ออกจากระบบ</a></li>
+  </ul>
+  <!-- --------code---------- -->
+  <h3><u>บันทึกข้อมูลคู่ค้า</u></h3>
+  <section class="main">
+    <section>
+    <!-- column1 -->
+    <div class="column">
+      <form id="addpartner" method="POST" action="/home/partner">
+        <label>รหัสคู่ค้า</label><br>
+        <input type="text" id="ID_partner" name="ID_partner">
+        <br>
+        <label>ชื่อบริษัท</label><br>
+        <input type="text" id="name" name="name">
+        <br>
+        <label>เบอร์ติดต่อ</label><br>
+        <input type="text" id="telephone" name="telephone" maxlength="10">
+        <br>
+        <label>Email</label><br>
+        <input type="text" id="email" name="email">
+        <br>
+        <label>ที่อยู่</label><br>
+        <textarea id="address" name="address"></textarea>
+        <br>
+        <label>Fax</label><br>
+        <input type="text" id="fax" name="fax" maxlength="9">
+        <br>
+        <!-- <label>นามสกุล</label><br>
+        <input type="text" name="surname">
+        <br> -->
+        <label>ประเภทคู่ค้า</label><br>
+        <select id="partner_type" name="partner_type">
+          <option value="choose" hidden>เลือก...</option>
+          <option value="นายหน้า">นายหน้า</option>
+          <option value="บริษัทอะไหล่">บริษัทอะไหล่</option>
+          <option value="ขนส่ง">ขนส่ง</option>
+        </select>
+      </form>
+    </div>
+    
+    <!-- column 2 -->
+    <div class="column">
+      <form  id="searchpartner" method="POST" action="/home/partner-search">
+        <label class="label-partner">ค้นหาข้อมูลคู่ค้า</label><br>
+        <input class="search" name="searchpartner" type="text" id="searchpartner" style="width: 350px; height: 30px; font-size: 1.1vw;">
+        <button class="button3" type="submit" style="margin-left: 1vw;">ค้นหา</button>
+      </form>
+        <br><br>
+        <table>
+          <tr>
+            <th style="text-align: center;">รหัสคู่ค้า</th>
+            <th style="text-align: center;">ชื่อบริษัท</th>
+            <th style="text-align: center;">ที่อยู่</th>
+            <th style="text-align: center;">เบอร์ติดต่อ</th>
+          </tr>
+          <% for(var i=0; i < partner.length; i++) { %>
+            <tr>
+              <td style="text-align: center;"><%= partner[i].ID_partner %></td> 
+              <td style="text-align: center;"><%= partner[i].name %></td>
+              <td style="text-align: center;"><%= partner[i].address %></td>
+              <td style="text-align: center;"><%= partner[i].telephone %></td>
+            </tr>
+          <% } %> 
+          <% if(notfound) { %>  
+            <td colspan="4" style="text-align: center;">ไม่พบข้อมูล</td> 
+          <% } %> 
+        </table>
+    </div>
+      <div class="column" align="center">
+        <button class="button1" onclick="checkText()">บันทึก</button>
+      </div>
+      <div class="column" align="center">
+            <button class="button2" onclick="location.href='/home'">ยกเลิก</button>
+          </div>
+    </section>
+  </section>
+
+  <!-- footer -->
+
+  <div class="footer">
+    © 2019 Diamond Development
+  </div>
+</body>
+
+</html>
